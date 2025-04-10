@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Aplikasi Web Sederhana</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    nav {
+      margin-bottom: 20px;
+    }
+    nav a {
+      margin-right: 15px;
+      text-decoration: none;
+      color: blue;
+    }
+    .page {
+      display: none;
+    }
+    .active {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <h1>Aplikasi Web Sederhana</h1>
+  
+  <nav>
+    <a href="#" onclick="showPage('home')">Halaman Utama</a>
+    <a href="#" onclick="showPage('form')">Halaman Form</a>
+  </nav>
+  
+  <div id="home" class="page active">
+    <h2>Hello, World!</h2>
+  </div>
+  
+  <div id="form" class="page">
+    <h2>Form Pengguna</h2>
+    <form onsubmit="handleSubmit(event)">
+      <label>Nama:<br />
+        <input type="text" id="nama" required />
+      </label><br /><br />
+      <label>Email:<br />
+        <input type="email" id="email" required />
+      </label><br /><br />
+      <button type="submit">Kirim</button>
+    </form>
+    <div id="hasil" style="margin-top: 20px;"></div>
+  </div>
+
+  <script>
+    function showPage(pageId) {
+      const pages = document.querySelectorAll('.page');
+      pages.forEach(page => page.classList.remove('active'));
+      document.getElementById(pageId).classList.add('active');
+    }
+
+    function handleSubmit(event) {
+      event.preventDefault();
+      const nama = document.getElementById('nama').value;
+      const email = document.getElementById('email').value;
+      document.getElementById('hasil').innerHTML =
+        `<p>Terima kasih, <strong>${nama}</strong>! Email kamu adalah <strong>${email}</strong>.</p>`;
+    }
+  </script>
+</body>
+</html>
